@@ -11,7 +11,7 @@ export class ProductListComponent {
   imageMargin = 2;
   showImage = false;
   listFilter = 'cart';
-  
+
   products: any[] = [
     {
       'productId': 1,
