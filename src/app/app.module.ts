@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -24,7 +25,14 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      { path: 'products', component: ProductListComponent },
+      { path: 'product/:id', component: ProductDetailComponent },
+      { path: 'welcome', component: WelcomeComponent },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+    ])
   ],
   providers: [ ProductService ],
   bootstrap: [AppComponent]
