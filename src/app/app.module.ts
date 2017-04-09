@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductFilterPipe } from './product-list/product-filter.pipe';
 import { StarComponent } from './star/star.component';
-
-import { ProductService } from './product-list/product.service';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+
+import { ProductService } from './product-list/product.service';
+import { ProductGuardService } from './product-detail/product-guard.service';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,14 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     HttpModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
-      { path: 'product/:id', component: ProductDetailComponent },
+      { path: 'product/:id', 
+        canActivate: [ ProductGuardService ], component: ProductDetailComponent },
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ])
   ],
-  providers: [ ProductService ],
+  providers: [ ProductService, ProductGuardService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
