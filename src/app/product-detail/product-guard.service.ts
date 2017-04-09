@@ -13,7 +13,7 @@ export class ProductGuardService implements CanActivate {
       alert('Invalid product Id');
       // start a new navigation to redirect to list page
       this._router.navigate(['/products']);
-      //abort current navigation
+      // abort current navigation
       return false;
     }
 

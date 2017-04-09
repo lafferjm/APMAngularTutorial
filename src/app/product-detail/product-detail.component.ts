@@ -25,7 +25,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         const id = Number(params['id']);
         this.getProduct(id);
       }
-    )
+    );
   }
 
   ngOnDestroy(): void {
