@@ -1,0 +1,34 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { ProductListComponent } from './product-list.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { ProductFilterPipe } from './product-filter.pipe';
+import { StarComponent } from '../star/star.component';
+import { ProductGuardService } from '../product-detail/product-guard.service';
+import { ProductService } from './product.service';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule.forChild([
+      { path: 'products', component: ProductListComponent },
+      { path: 'product/:id',
+        canActivate: [ ProductGuardService ], component: ProductDetailComponent },
+    ])
+  ],
+  declarations: [
+    ProductListComponent,
+    ProductDetailComponent,
+    ProductFilterPipe,
+    StarComponent
+  ],
+  providers: [
+    ProductService,
+    ProductGuardService
+  ]
+})
+export class ProductModule { }
